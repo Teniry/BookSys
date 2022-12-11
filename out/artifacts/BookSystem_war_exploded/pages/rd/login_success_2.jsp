@@ -9,49 +9,48 @@
     <script type="text/javascript" src="../../static/script/jquery-3.5.1.js"></script>
 
     <base href="http://localhost:8080/bookSystem/">
-
     <script type="text/javascript">
         $(function (){
             $("button.addToLend").click(function (){
 
-                var bookId=$(this).attr("bookID");
+                var bookId=$(this).attr("bookID")
+                location.href="http://localhost:8080/bookSystem/lendServlet?action=addItem&id="+bookId;
                 alert(bookId);
-                 location.href="http://localhost:8080/bookSystem/lendServlet?action=addItem&id="+bookId;
-                // $.get("http://localhost:8080/book/lendServlet","action=ajaxAdd&id="+bookId,function (data){
-                // alert("getJson"+data);
-                // },"json");
+                // $.getJSON("http://localhost:8080/book/cartSevlet","action=ajaxAdd&id="+bookId,function (data){
+                //
+                // })
             });
         });
     </script>
 
-    <script>
-        function showBook(){
 
-            document.getElementById("showBook").style.display="block";
-            document.getElementById("showLend").style.display="none";
-            document.getElementById("showCer").style.display="none";
-            document.getElementById("modify").style.display="none";
-        }
-        function showLend(){
-            document.getElementById("showBook").style.display="none";
-            document.getElementById("showLend").style.display="block";
-            document.getElementById("showCer").style.display="none";
-            document.getElementById("modify").style.display="none";
-        }
-        function showCer(){
-            document.getElementById("showBook").style.display="none";
-            document.getElementById("showLend").style.display="none";
-            document.getElementById("showCer").style.display="block";
-            document.getElementById("modify").style.display="none";
-        }
-        function modify(){
-            document.getElementById("showBook").style.display="none";
-            document.getElementById("showLend").style.display="none";
-            document.getElementById("showCer").style.display="none";
-            document.getElementById("modify").style.display="block";
-        }
+<script>
+      function showBook(){
+
+          document.getElementById("showBook").style.display="block";
+          document.getElementById("showLend").style.display="none";
+          document.getElementById("showCer").style.display="none";
+          document.getElementById("modify").style.display="none";
+      }
+      function showLend(){
+          document.getElementById("showBook").style.display="none";
+          document.getElementById("showLend").style.display="block";
+          document.getElementById("showCer").style.display="none";
+          document.getElementById("modify").style.display="none";
+      }
+      function showCer(){
+          document.getElementById("showBook").style.display="none";
+          document.getElementById("showLend").style.display="none";
+          document.getElementById("showCer").style.display="block";
+          document.getElementById("modify").style.display="none";
+      }
+      function modify(){
+          document.getElementById("showBook").style.display="none";
+          document.getElementById("showLend").style.display="none";
+          document.getElementById("showCer").style.display="none";
+          document.getElementById("modify").style.display="block";
+      }
     </script>
-
 
     <style type="text/css">
         .login_form{
@@ -64,6 +63,8 @@
         }
     </style>
 </head>
+<body>
+${sessionScope.cart}
 
         <div class="header" style="height: 80px;width: 100%">
         <img class="logo_img"  style="position: absolute;left: 0; height: 80px;opacity: 0.9;" alt="" src="static/img/changjiang.jpg" >
@@ -166,10 +167,11 @@
                                <div class="book_add">
                                    <button bookID="${book.bkID}" class="addToLend">借书</button>
                                </div>
+
+
                            </div>
                            </c:forEach>
                        </div>
-
 
                        <div id="page_nav">
                            <c:if test="${sessionScope.page.pageNo>1}">
@@ -265,9 +267,7 @@
                    </div>
 
                </div>
-
                <div id="showLend" style="display: none">
-
                  <div id="main">
                      <table>
                          <tr>
@@ -278,29 +278,31 @@
                              <td>操作</td>
                          </tr>
 
-                         <c:if test="${empty sessionScope.lendcart}">
+                         ${sessionScope.cart}
+
+                         <c:if test="${empty sessionScope.cart}">
                              <tr>
                                  <td colspan="5"><a href="pages/rd/login_success.jsp">您还没有借书</a> </td>
 
                              </tr>
                          </c:if>
-                         <c:if test="${ not empty sessionScope.lendcart}">
+                         <c:if test="${ not empty sessionScope.cart}">
 
-                         <c:forEach items="${sessionScope.lendcart}" var="book">
+                         <c:forEach items="${sessionScope.cart}" var="entry">
 
                          <tr>
-                             <td>${book.bkName}</td>
-                             <td>${book.bkPrice}</td>
+                             <td>${entry.bkName}</td>
+                             <td>${entry.bkPrice}</td>
                              <td>${sessionScope.lendDate}</td>
-                             <td>${sessionScope.readerType.canLendDay}</td>
-                             <td><a class="deleteItem" href="cartSevlet?action=deleteItem&id=${book.bkID}">删除</a></td>
+                             <td>${sessionScope.readerTtype.canLendDay}</td>
+                             <td><a class="deleteItem" href="cartSevlet?action=deleteItem&id=${entry.value.id}">删除</a></td>
                          </tr>
                          </c:forEach>
                          </c:if>
                      </table>
                          <div class="lend_info">
-                             <span class="lend_span">已借数量 <span class="b_price">${sessionScope.reader.rdBorrow}</span>本</span>
-                             <span class="lend_span">可借数量<span class="b_price">${sessionScope.readerType.canLendCount}</span>本</span>
+                             <span class="lend_span">已借数量 <span class="b_price">2</span>本</span>
+                             <span class="lend_span">可借数量<span class="b_price">3</span>本</span>
                          </div>
                  </div>
                </div>
