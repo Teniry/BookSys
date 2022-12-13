@@ -24,6 +24,7 @@
             // });
             //借书
             $("button.addToLend").click(function (){
+<<<<<<< HEAD
                 var bookId=$(this).attr("bookID");
                 $.ajax({
                     url:"http://localhost:8080/bookSystem/lendServlet",
@@ -46,6 +47,15 @@
                         id: bookId
                     }
                 });
+=======
+
+                var bookId=$(this).attr("bookID");
+                alert(bookId);
+                 location.href="http://localhost:8080/bookSystem/lendServlet?action=addItem&id="+bookId;
+                // $.get("http://localhost:8080/book/lendServlet","action=ajaxAdd&id="+bookId,function (data){
+                // alert("getJson"+data);
+                // },"json");
+>>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
             });
 
            //还书
@@ -135,7 +145,10 @@
             document.getElementById("showLend").style.display="none";
             document.getElementById("showCer").style.display="none";
             document.getElementById("modify").style.display="none";
+<<<<<<< HEAD
 
+=======
+>>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
         }
         function showLend(){
             document.getElementById("showBook").style.display="none";
@@ -172,8 +185,11 @@
       }
     </style>
 </head>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
 
         <div class="header" style="height: 80px;width: 100%">
         <img class="logo_img"  style="position: absolute;left: 0; height: 80px;opacity: 0.9;" alt="" src="static/img/changjiang.jpg" >
@@ -333,6 +349,7 @@
                                <div class="book_add">
                                    <button bookID="${book.bkID}" class="addToLend" >借书</button>
                                </div>
+<<<<<<< HEAD
                                </c:if>
                                <c:if test="${book.bkStatus!='在馆'}">
                                    <div class="book_add">
@@ -346,11 +363,14 @@
                                        <button bookID="${book.bkID}" lendcount="${sessionScope.reader.rdBorrow}" canlend="${sessionScope.readerType.canLendCount}" class="addToLend" disabled="disabled">在馆</button>
                                    </div>
                                </c:if>
+=======
+>>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
                            </div>
                            </c:forEach>
                            </c:if>
                        </div>
 
+<<<<<<< HEAD
                        <c:if test="${not empty sessionScope.bkpage.items}">
                            <div id="page_nav">
                                <c:if test="${sessionScope.bkpage.pageNo>1}">
@@ -388,6 +408,9 @@
                        </c:if>
 
                        <c:if test="${empty sessionScope.bkpage.items}">
+=======
+
+>>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
                        <div id="page_nav">
                            <c:if test="${sessionScope.page.pageNo>1}">
 
@@ -507,6 +530,7 @@
                          <c:forEach items="${sessionScope.lendcart}" var="book">
 
                          <tr>
+<<<<<<< HEAD
                              <td>《${book.bkName}》</td>
                              <td>${book.bkPrice}</td>
                              <td>${sessionScope.lendDate}</td>
@@ -518,6 +542,13 @@
                              <c:if test="${sessionScope.reader.rdStatus=='挂失'}">
                                  <td><button class="deleteItem"   bkid="${book.bkID}" disabled="disabled" style="background: red;height: 30px;width: 45px;border: none;color: white;size: 30px;border-radius:8px">还书</button></td>
                              </c:if>
+=======
+                             <td>${book.bkName}</td>
+                             <td>${book.bkPrice}</td>
+                             <td>${sessionScope.lendDate}</td>
+                             <td>${sessionScope.readerType.canLendDay}</td>
+                             <td><a class="deleteItem" href="cartSevlet?action=deleteItem&id=${book.bkID}">删除</a></td>
+>>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
                          </tr>
                          </c:forEach>
                          </c:if>
