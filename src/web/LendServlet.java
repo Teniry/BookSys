@@ -20,15 +20,10 @@ import java.util.stream.Collectors;
 public class LendServlet extends BaseServlet {
     private Map< Integer,Book> items=new LinkedHashMap<Integer,Book>();
     BookService bookService=new BookServiceImpl();
-<<<<<<< HEAD
     Map<String, Object> result=new HashMap<String,Object>();
     Gson gson=new Gson();
     int msg;
     int count=0;
-=======
-    int count=0;
-    int i=0;
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
     /**
      * 添加借的书
      * @param req
@@ -38,7 +33,6 @@ public class LendServlet extends BaseServlet {
      */
     protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //借的书的数量
-<<<<<<< HEAD
         ReaderType reqaertype = (ReaderType) req.getSession().getAttribute("readerType");
         int canLend=reqaertype.getCanLendCount();
         int id= WebUtils.parseInt(req.getParameter("id"),0);
@@ -85,35 +79,6 @@ public class LendServlet extends BaseServlet {
 
             req.getSession().setAttribute("lendDate",format);
         }
-=======
-
-        int id= WebUtils.parseInt(req.getParameter("id"),0);
-        //通过id获取图书的信息
-        Book book=bookService.bookByID(id);
-        //添加商品项
-         List<Book> lendcart= (List<Book>) req.getSession().getAttribute("lendcart");
-        if(lendcart==null){
-           lendcart=new ArrayList<Book>();
-            req.getSession().setAttribute("lendcart",lendcart);
-
-        }
-        lendcart.add(book);
-        count++;
-
-        //更改读者借书的数目(没改数据库)
-        Reader reader = (Reader) req.getSession().getAttribute("reader");
-        if(count==i+1){
-            reader.setRdBorrow(count);
-            i++;
-        }
-        req.getSession().setAttribute("reader",reader);
-        //获取当前借书的时间
-        Date date=new Date();
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-        String format = formatter.format(date);
-
-        req.getSession().setAttribute("lendDate",format);
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
         //重定向返回商品列表页面
         resp.sendRedirect("pages/rd/login_success.jsp");
 
@@ -166,19 +131,6 @@ public class LendServlet extends BaseServlet {
 //            req.getSession().setAttribute("lendcart",lendcart);
 
         }
-<<<<<<< HEAD
-=======
-        cart.add(book);
-        System.out.println(cart);
-        //最后一个添加商品的名称
-       // req.getSession().setAttribute("lastName",cartItem.getName());
-        //获取当前借书的时间
-        Date date=new Date();
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-        String format = formatter.format(date);
-        req.getSession().setAttribute("lendDate",format);
-        System.out.println(format);
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
 
         //获取借书的数目
         count=lendcart.size();
@@ -188,7 +140,6 @@ public class LendServlet extends BaseServlet {
             //通过id获取图书的信息,修改借的书的状态(改了数据库里的状态)
             Book book=bookService.statusByID(id,"已借出");
 
-<<<<<<< HEAD
             Page page = (Page) req.getSession().getAttribute("page");
             //创建索引
             int i=0;
@@ -200,9 +151,6 @@ public class LendServlet extends BaseServlet {
                 i++;
             }
             System.out.println(item);
-=======
-        result.put("cart",cart);
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
 
             //将书放入Map里方便删除根据书的ID删
             items.put(id,book);
