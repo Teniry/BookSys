@@ -13,4 +13,12 @@ public interface BookDao {
     public Integer queryPageCount();
     //查询每页的图书
     public List<Book> queryPageItems(int begin, int pageSize);
+    //根据bkName查询图书
+    public List<Book> bookByName(String name);
+    //根据bkISBN查询图书
+    public List<Book> bookByISBN(String isbn);
+    //根据bkName和bkISBN查书
+    public List<Book> bookByNameISBN(String name,String isbn);
+    //根据id改状态
+    public void statusByID(Integer id,String status);
 }

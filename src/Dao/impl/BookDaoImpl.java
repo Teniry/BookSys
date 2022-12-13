@@ -29,4 +29,28 @@ public class BookDaoImpl extends BaseDao implements BookDao{
         String sql="select * from book limit ?,?";
         return querylist(Book.class,sql,begin,pageSize);
     }
+
+    @Override
+    public List<Book> bookByName(String name) {
+        String sql="select * from book where bkName=?";
+        return querylist(Book.class,sql,name);
+    }
+
+    @Override
+    public List<Book> bookByISBN(String isbn) {
+        String sql="select * from book where bkISBN=?";
+        return querylist(Book.class,sql,isbn);
+    }
+
+    @Override
+    public List<Book> bookByNameISBN(String name, String isbn) {
+        String sql="select * from book where bkName=? and bkISBN=?";
+        return querylist(Book.class,sql,name,isbn);
+    }
+
+    @Override
+    public void statusByID(Integer id,String status) {
+        String sql="update book set bkStatus=? where bkID=? ";
+         update(sql,status,id);
+    }
 }

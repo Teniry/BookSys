@@ -27,4 +27,12 @@ public interface ReaderService {
      * 查询用户信息
      */
     public Reader readerbyID(String ID);
+    /**
+     * 根据rdID改rdStatus
+     */
+    public  Reader updateStatusByID(String rdID,String status);
+    /**
+     * 根据ID注销用户
+     */
+    public void delByID(String ID);
 }

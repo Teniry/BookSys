@@ -53,5 +53,17 @@ public class ReaderDaoImpl extends BaseDao implements ReaderDao {
         return query.getRdType();
     }
 
+    @Override
+    public int updateStatusByID(String rdID,String rdStatus) {
+        String sql="update reader set rdStatus=? where rdID=?";
+        return update(sql,rdStatus,rdID);
+    }
+
+    @Override
+    public int delByID(String ID) {
+        String sql="delete from reader where rdID=?";
+        return update(sql,ID);
+    }
+
 
 }

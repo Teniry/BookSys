@@ -38,5 +38,31 @@ public class ReaderServiceTest {
 
     }
 
+    @Test
+    public void pageBYBook(){
+        BookDao bookDao=new BookDaoImpl();
+        System.out.println(bookDao.bookByName("516"));
+        System.out.println(bookDao.bookByISBN("703071363"));
+        System.out.println(bookDao.bookByNameISBN("概率论与数理统计","703071363"));
+    }
+
+    @Test
+    public  void statusByID(){
+       BookService bookService=new BookServiceImpl();
+        System.out.println(bookService.statusByID(2,"在馆"));
+    }
+
+    @Test
+    public void rdStatusByID(){
+        ReaderService readerService=new ReaderServiceImpl();
+        System.out.println(readerService.updateStatusByID("201801001","挂失"));
+    }
+
+    @Test
+    public void delByID(){
+        ReaderService readerService=new ReaderServiceImpl();
+        readerService.delByID("1234567");
+    }
+
 
 }

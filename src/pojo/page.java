@@ -2,7 +2,7 @@ package pojo;
 
 import java.util.List;
 
-public class page<T>{
+public class Page<T>{
     public static  final Integer PAGE_SIZE=3;
     //当前页码
     private  Integer pageNo;

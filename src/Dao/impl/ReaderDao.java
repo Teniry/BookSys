@@ -17,5 +17,9 @@ public interface ReaderDao {
     public int rdUpdatePwd(Reader reader);
     //通过rdID查询rdType
     public int queryIDByrdType(String rdID);
+    //根据rdID改读者借书证的状态
+    public int updateStatusByID(String rdID,String rdStatus);
+    //根据ID注销账号
+    public int delByID(String ID);
 
 }

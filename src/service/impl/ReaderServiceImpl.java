@@ -45,4 +45,16 @@ public class ReaderServiceImpl implements ReaderService {
         return reader.querybyID(ID);
 
     }
+
+    @Override
+    public Reader updateStatusByID(String rdID, String status) {
+        reader.updateStatusByID(rdID,status);
+        Reader reader1 = reader.querybyID(rdID);
+        return reader1;
+    }
+
+    @Override
+    public void delByID(String ID) {
+        reader.delByID(ID);
+    }
 }

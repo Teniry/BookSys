@@ -31,6 +31,16 @@
         <url-pattern>/lendServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CerServlet</servlet-name>
+        <servlet-class>web.CerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CerServlet</servlet-name>
+        <url-pattern>/cerServlet</url-pattern>
+    </servlet-mapping>
+
+
 <!--    <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>

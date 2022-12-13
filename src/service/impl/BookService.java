@@ -1,7 +1,7 @@
 package service.impl;
 
 import pojo.Book;
-import pojo.page;
+import pojo.Page;
 
 import java.util.List;
 
@@ -11,5 +11,9 @@ public interface BookService {
     //查询所有图书
     public List<Book> bookAll();
     //当前页数据
-    public page<Book> page(int pageNo, int pageSize);
+    public Page<Book> page(int pageNo, int pageSize);
+    //根据书名，ISBN查图书
+    public Page<Book> pageByBook(int pageNo, int pageSize, String name, String isbn);
+    //根据idgau书的状态
+    public Book statusByID(Integer id,String status);
 }
