@@ -3,7 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    
+
+
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/pages/rd/login_success.jsp</url-pattern>
+        <url-pattern>/pages/manager/*</url-pattern>
+
+    </filter-mapping>
+
+
     <servlet>
         <servlet-name>ReaderServlet</servlet-name>
         <servlet-class>web.ReaderServlet</servlet-class>
@@ -40,13 +53,14 @@
         <url-pattern>/cerServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ManagerServlet</servlet-name>
+        <servlet-class>web.ManagerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManagerServlet</servlet-name>
+        <url-pattern>/managerServlet</url-pattern>
+    </servlet-mapping>
 
-<!--    <filter>
-        <filter-name>LoginFilter</filter-name>
-        <filter-class>filter.LoginFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
-        <url-pattern>/pages/*</url-pattern>
-    </filter-mapping>-->
+
 </web-app>

@@ -2,6 +2,7 @@ package Dao.impl;
 
 import pojo.Book;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class BookDaoImpl extends BaseDao implements BookDao{
@@ -52,5 +53,24 @@ public class BookDaoImpl extends BaseDao implements BookDao{
     public void statusByID(Integer id,String status) {
         String sql="update book set bkStatus=? where bkID=? ";
          update(sql,status,id);
+    }
+
+    @Override
+    public void update(String bkName, String bkAuthor, String bkPress, Integer bkPages, BigDecimal bkPrice, String bkBrief, String bkStatus, String bkISBN) {
+        String sql="update book set  bkName=?, bkAuthor=?, bkPress=?, bkPages=?, bkPrice=?,bkBrief=?, bkStatus=? where bkISBN=? ";
+        update(sql,bkName, bkAuthor, bkPress,  bkPages, bkPrice, bkBrief,  bkStatus,  bkISBN);
+    }
+
+    @Override
+    public void delByID(Integer id) {
+        String sql="delete from book where bkID=?";
+        update(sql,id);
+    }
+
+    @Override
+    public void add(String bkName, String bkAuthor, String bkPress, Integer bkPages, BigDecimal bkPrice, String bkBrief, String bkStatus, String bkISBN) {
+        String sql="insert into book(bkName, bkAuthor, bkPress,  bkPages, bkPrice, bkBrief,  bkStatus,  bkISBN)" +
+                "values(?,?,?,?,?,?,?,?)";
+        update(sql,bkName, bkAuthor, bkPress,  bkPages, bkPrice, bkBrief,  bkStatus,  bkISBN);
     }
 }

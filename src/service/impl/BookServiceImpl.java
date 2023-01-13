@@ -5,6 +5,7 @@ import Dao.impl.BookDaoImpl;
 import pojo.Book;
 import pojo.Page;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,9 +65,7 @@ public class BookServiceImpl implements BookService{
             pageTotal++;
         }
         page.setPageTotal(pageTotal);
-
         page.setPageNo(pageNo);
-
         //求当前页数据
         if(name!=""&&isbn!=""){
              items=bookDao.bookByNameISBN(name,isbn);
@@ -87,5 +86,30 @@ public class BookServiceImpl implements BookService{
         bookDao.statusByID(id,status);
         Book book = bookDao.bookByID(id);
         return book;
+    }
+
+    @Override
+    public Book bookByISBN(String isbn) {
+        Book book=new Book();
+        List<Book> books = bookDao.bookByISBN(isbn);
+        for (Book b : books) {
+            book=b;
+        }
+        return book;
+    }
+
+    @Override
+    public void updateByISBN(String bkName, String bkAuthor, String bkPress, Integer bkPages, BigDecimal bkPrice, String bkBrief, String bkStatus, String bkISBN) {
+        bookDao.update(bkName, bkAuthor, bkPress,  bkPages, bkPrice, bkBrief,  bkStatus,  bkISBN);
+    }
+
+    @Override
+    public void delByID(Integer id) {
+        bookDao.delByID(id);
+    }
+
+    @Override
+    public void add(String bkName, String bkAuthor, String bkPress, Integer bkPages, BigDecimal bkPrice, String bkBrief, String bkStatus, String bkISBN) {
+        bookDao.add(bkName, bkAuthor, bkPress,  bkPages, bkPrice, bkBrief,  bkStatus,  bkISBN);
     }
 }

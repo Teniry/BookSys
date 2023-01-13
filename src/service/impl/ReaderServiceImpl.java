@@ -9,7 +9,7 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public void regist(Reader rd) {
-
+          reader.save(rd);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Reader {
     private Date rdDateReg;
     private String rdPhoto="web/static/img/default.jpg";
     private String rdStatus="有效";
-    private Integer rdBorrow;
+    private Integer rdBorrow=0;
     private String rdPwd;
     private Integer rdAdminRoles=0;
 

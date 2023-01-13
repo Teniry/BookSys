@@ -19,6 +19,7 @@ import java.util.Map;
 public class CerServlet extends BaseServlet{
     ReaderService readerService=new ReaderServiceImpl();
     List<Reader> lossReader=new ArrayList<Reader>();
+    List<Reader> wreader=new ArrayList<Reader>();
     String status=null;
     String withdraw=null;
     Map<String, Object> result=new HashMap<String,Object>();
@@ -33,13 +34,19 @@ public class CerServlet extends BaseServlet{
         reader.setRdStatus(status);
         Reader reader1 = readerService.updateStatusByID(rdID, status);
         lossReader.add(reader1);
-        req.getSession().setAttribute("lossReader",lossReader);
+        if(wreader==null){
+            wreader= (List<Reader>) req.getSession().getAttribute("w_reader");
+        }
+        wreader.add(reader1);
+        req.getSession().setAttribute("w_reader",wreader);
+        req.getSession().setAttribute("lossReader",reader1);
         System.out.println(lossReader);
         result.put("status",status);
         String resultString=gson.toJson(result);
         resp.getWriter().write(resultString);
 
     }
+    //挂失
     protected void ajaxWithdraw(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //获取用户信息
         Reader reader = (Reader) req.getSession().getAttribute("reader");

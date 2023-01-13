@@ -10,17 +10,71 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class ReaderServlet extends BaseServlet {
     ReaderService readerService=new ReaderServiceImpl();
     BookService bookService=new BookServiceImpl();
     ReaderTypeService readerTypeService=new ReaderTypeServiceImpl();
+    List<Reader> list;
+    private Map< String,Reader> regists=new LinkedHashMap<String,Reader>();
 
+    //注册
+    protected void regist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String rdID=req.getParameter("rdID");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String repwd = req.getParameter("repwd");
+        String email = req.getParameter("email");
+        //查看ID是否重复
+        if(readerService.readerbyID(rdID)!=null){
+            // 跳回注册页面
+            System.out.println("请输入正确的学号");
+            req.getSession().setAttribute("rmsg","请输入正确的学号");
+            req.getSession().setAttribute("r_rdID",rdID);
+            req.getSession().setAttribute("r_username",username);
+            req.getSession().setAttribute("r_email",email);
+            resp.sendRedirect("pages/rd/regist.jsp");
+        }else{
+            if(password!=null){
 
+                if(password.equals(repwd)){
+                    // 可用
+                    Reader reader = new Reader(rdID, username, null, null, null, null, email, null, null, null, null, password, null);
+                    list= (List<Reader>) req.getSession().getAttribute("regist");
+                    if(list==null){
+                        req.getSession().setAttribute("regist",list);
+                        regists.put(reader.getRdID(),reader);
+                    }else{
+
+                        for (Reader reader1 : list) {
+                            regists.put(reader1.getRdID(),reader1);
+                        }
+                        regists.put(reader.getRdID(),reader);
+                    }
+
+                    list=regists.values().stream().collect(Collectors.toList());
+                    req.getSession().setAttribute("rmsg","申请成功，请等待管理员审批");
+                    req.getSession().setAttribute("r_reader",reader);
+                    req.getSession().setAttribute("regist",list);
+                    // 跳到注册成功页面 regist_success
+                    resp.sendRedirect("pages/rd/regist.jsp");
+                }else{
+                    req.getSession().setAttribute("rmsg","两次密码不同");
+                    resp.sendRedirect("pages/rd/regist.jsp");
+                }
+            }else{
+                req.getSession().setAttribute("rmsg","请输入密码");
+                resp.sendRedirect("pages/rd/regist.jsp");
+            }
+
+        }
+
+    }
+
+    //登录
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // 1、获取请求的参数
@@ -43,8 +97,11 @@ public class ReaderServlet extends BaseServlet {
             //查询所有图书保存到session中
             List<Book> books = bookService.bookAll();
             req.getSession().setAttribute("books",books);
+            req.getSession().setAttribute("mcart",books);
             //通过Reader里rdType查询readerType的rdType的信息名
-            ReaderType readerType = readerTypeService.queryByrdType(Integer.valueOf(reader.getRdType()));
+            int type=reader.getRdType();
+            ReaderType readerType = readerTypeService.queryByrdType(type);
+
             req.getSession().setAttribute("readerType",readerType);
 
 //            resp.sendRedirect("pages/rd/login_success.jsp");
@@ -64,7 +121,7 @@ public class ReaderServlet extends BaseServlet {
     }
 
 
-
+    //修改密码
     protected void modify(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String rdID= (String) req.getSession().getAttribute("rdID");
         String rdPwd= req.getParameter("rdPwd");

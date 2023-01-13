@@ -1,0 +1,59 @@
+
+
+#main {
+    height: 430px;
+    width:100%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#main table td{
+    width: 120px;
+    text-align:center;
+    border-bottom: 1px #e3e3e3 solid;
+    padding: 15px;
+}
+
+#main table{
+    margin: auto;
+    margin-top: 50px;
+    border-collapse: collapse;
+}
+
+.agr{
+    background: red;
+    height: 30px;
+    width: 45px;
+    border: none;
+    color: white;
+    size: 30px;
+    border-radius:8px
+}
+
+.reject{
+    background: red;
+    height: 30px;
+    width: 45px;
+    border: none;
+    color: white;
+    size: 30px;
+    border-radius:8px
+}
+
+.del:hover{
+    background-color: #810824;
+}
+
+.concel_loss{
+    background: red;
+    height: 30px;
+    width: 75px;
+    border: none;
+    color: white;
+    size: 30px;
+    border-radius:8px
+}
+
+.concel_loss:hover{
+    background-color: #810824;
+}

@@ -16,15 +16,7 @@
     opacity: 0.7;
 }
 
-/*#login_SuccessHeader{
 
-    margin-left: 0px;
-    width: 190px;
-    height: 700px;
-    !*background: url("../img/login.jpg") no-repeat scroll -104px -22px rgba(0,0,0, 0.3);*!
-    background-color: #39987c;
-
-}*/
 
 .cotent{
     width: 100%;
@@ -75,8 +67,6 @@
 }
 
 
-
-
 .right{
    margin-left: 100px;
 
@@ -89,12 +79,14 @@
 #item{
     height: 555px;
     width: 190px;
-    background: pink;
+    background: #024169;
     float: left;
     margin-top: 0;
     display: inline;
 
 }
+
+
 /*#midium{
     width: 100%;
     height: 230px;
@@ -128,13 +120,20 @@
 }
 .box:hover{
     color: green;
-    background-color: deepskyblue;
-}
-.box_text:hover{
-    color: deepskyblue;
+    background-color: #022c48;
 }
 
+.a_box{
+    text-align: center;
+    padding-top: 40px;
+    font-size: 20px
+}
+/*.box_text:hover{*/
+/*    color: deepskyblue;*/
+/*}*/
+
 .box_text{
+    color: white;
     text-decoration: none;
 }
 

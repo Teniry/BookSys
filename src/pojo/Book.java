@@ -18,7 +18,7 @@ private BigDecimal bkPrice;
 private Date bkDateIn;
 private String bkBrief;
 private String bkCover;
-private String bkStatus;
+private String bkStatus="在馆";
 
     public Book() {
     }

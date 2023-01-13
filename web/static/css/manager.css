@@ -1,0 +1,63 @@
+.m_content{
+    width: 100%;
+    height: 673px;
+    background: #7a0643;
+}
+
+
+
+.m_header{
+
+    background: #262020;
+    color: white;
+    width: 100%;
+    height: 80px
+}
+
+.header_font{
+
+    padding-top: 23px
+}
+.m_left{
+    width: 250px;
+    height: 673px;
+    float: left;
+    background: #024169;
+}
+
+
+.m_right{
+    width: calc(100% - 250px);
+    height: calc(100% - 80px);
+    background: #986139;
+}
+
+.character{
+    position: absolute;
+    top: 120px;
+    border-radius: 90px;
+    left: 85px;
+    height: 80px;
+    opacity: 0.8;
+}
+
+.m_item{
+    text-align:center;
+    width: 250px;
+    height: 75px;
+    color: white;
+    border-top: 1px inset white;
+
+}
+
+.m_item p{
+    font-size: 20px;
+    font-family: 正楷;
+}
+
+
+
+.m_item:hover{
+    background-color: #022c48;
+}
+

@@ -2,9 +2,12 @@ package Test;
 
 import Dao.impl.*;
 import org.junit.Test;
+import pojo.Book;
 import pojo.Reader;
 import pojo.ReaderType;
 import service.impl.*;
+
+import java.math.BigDecimal;
 
 public class ReaderServiceTest {
     ReaderService rs=new ReaderServiceImpl();
@@ -60,9 +63,24 @@ public class ReaderServiceTest {
 
     @Test
     public void delByID(){
-        ReaderService readerService=new ReaderServiceImpl();
-        readerService.delByID("1234567");
+       BookService bookService=new BookServiceImpl();
+       bookService.add("6sf","485","844622",551, BigDecimal.valueOf(8446),null,null,null);
     }
 
+    @Test
+    public void bookByISBN(){
+        BookService bookService=new BookServiceImpl();
+        bookService.updateByISBN(null, null, null,  111111, null, null,  null,  "703071363");
+        Book book = bookService.bookByISBN("703071363");
+        System.out.println(book);
+    }
+
+    @Test
+    public void type(){
+
+        ReaderTypeService readerTypeService=new ReaderTypeServiceImpl();
+        ReaderType readerType = readerTypeService.queryByrdType(2);
+        System.out.println(readerType);
+    }
 
 }

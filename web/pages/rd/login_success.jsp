@@ -24,7 +24,6 @@
             // });
             //借书
             $("button.addToLend").click(function (){
-<<<<<<< HEAD
                 var bookId=$(this).attr("bookID");
                 $.ajax({
                     url:"http://localhost:8080/bookSystem/lendServlet",
@@ -47,15 +46,6 @@
                         id: bookId
                     }
                 });
-=======
-
-                var bookId=$(this).attr("bookID");
-                alert(bookId);
-                 location.href="http://localhost:8080/bookSystem/lendServlet?action=addItem&id="+bookId;
-                // $.get("http://localhost:8080/book/lendServlet","action=ajaxAdd&id="+bookId,function (data){
-                // alert("getJson"+data);
-                // },"json");
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
             });
 
            //还书
@@ -118,7 +108,6 @@
                         },
                         success: function (data) {
                             if(data.withdraw=="t"){
-
                                 window.location.href="http://localhost:8080/bookSystem/";
                             }else{
                                 alert(data.withdraw);
@@ -145,10 +134,7 @@
             document.getElementById("showLend").style.display="none";
             document.getElementById("showCer").style.display="none";
             document.getElementById("modify").style.display="none";
-<<<<<<< HEAD
 
-=======
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
         }
         function showLend(){
             document.getElementById("showBook").style.display="none";
@@ -185,25 +171,27 @@
       }
     </style>
 </head>
-<<<<<<< HEAD
 
 
-=======
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
 
-        <div class="header" style="height: 80px;width: 100%">
+
+        <div class="header" style="height: 90px;width: 100%">
         <img class="logo_img"  style="position: absolute;left: 0; height: 80px;opacity: 0.9;" alt="" src="static/img/changjiang.jpg" >
-
-        <!--<span id="heaedr_content" style="font-size: 40px;color: black;font-family:宋体;padding-top: 50px" >图书管理系统</span>-->
         <h2 style="color: black;font-family: 宋体;font-size: 35px;padding-top: 15px;margin-left: 730px"><b>图书管理系统</b></h2>
+         
+         <c:if test="${sessionScope.reader.rdType>=1}">
+
+            <a href="pages/manager/manager.jsp" style="text-decoration-line: none"><h3 style="color: red;margin-left: 1400px;padding-top: 33px">后台管理</h3></a>
+         </c:if>
         </div>
+
        <div class="cotent">
+
            <div id="item">
                <div class="boxHeader">
                        <div class="banner">
 
 
-                           <!--<span id="heaedr_content" style="font-size: 40px;color: black;font-family:宋体;padding-top: 50px" >图书管理系统</span>-->
                            <img class="character" alt="" src="static/img/default.jpg">
 
                            <div class="login_Inf" >
@@ -220,21 +208,28 @@
                            </div>
                        </div>
                </div>
-               <div class="box" onclick="showBook()">
-
+               <div class="box"  onclick="showBook()">
+                  <div class="a_box" >
                    <a class="box_text" >图书</a>
+                  </div>
                </div>
                <div class="box" onclick="showLend()" >
+                    <div class="a_box">
 
-                   <a class="box_text" >借阅</a>
+                        <a class="box_text" >借阅</a>
+                    </div>
                </div>
                <div class="box" onclick="showCer()">
+                   <div class="a_box">
 
-                   <a class="box_text"  >借书证</a>
+                       <a class="box_text"  >借书证</a>
+                   </div>
                </div>
                <div class="box" onclick="modify()">
+                   <div class="a_box">
 
-                   <a class="box_text"  >修改密码</a>
+                       <a class="box_text"  >修改密码</a>
+                   </div>
                </div>
 
            </div>
@@ -298,12 +293,12 @@
                            </c:if>
 
                            <c:if test="${empty sessionScope.bkpage.items}">
-
                            <c:forEach items="${sessionScope.page.items}" var="book">
                            <div class="b_list">
                                <div class="img_div">
                                   <img class="book_img" alt="" src="static/img/gai.png" />
                                </div>
+
                                <div class="book_info">
                                    <div class="book_name">
                                        <span class="sp1">书名:</span>
@@ -349,7 +344,6 @@
                                <div class="book_add">
                                    <button bookID="${book.bkID}" class="addToLend" >借书</button>
                                </div>
-<<<<<<< HEAD
                                </c:if>
                                <c:if test="${book.bkStatus!='在馆'}">
                                    <div class="book_add">
@@ -363,14 +357,13 @@
                                        <button bookID="${book.bkID}" lendcount="${sessionScope.reader.rdBorrow}" canlend="${sessionScope.readerType.canLendCount}" class="addToLend" disabled="disabled">在馆</button>
                                    </div>
                                </c:if>
-=======
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
+
                            </div>
                            </c:forEach>
                            </c:if>
                        </div>
 
-<<<<<<< HEAD
+
                        <c:if test="${not empty sessionScope.bkpage.items}">
                            <div id="page_nav">
                                <c:if test="${sessionScope.bkpage.pageNo>1}">
@@ -408,9 +401,7 @@
                        </c:if>
 
                        <c:if test="${empty sessionScope.bkpage.items}">
-=======
 
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
                        <div id="page_nav">
                            <c:if test="${sessionScope.page.pageNo>1}">
 
@@ -484,23 +475,6 @@
                                <a href="${sessionScope.page.url}&pageNo=${sessionScope.page.pageTotal}">末页</a>
                            </c:if>
                            共${sessionScope.page.pageTotal}页，${sessionScope.page.pageTotalCount}条记录
-<%--                           到第<input value="${param.pageNo}" name="pn" id="pn_input"/>页--%>
-<%--                           <input  id="pageButon" type="button" value="确 定">--%>
-<%--                           <script type="text/javascript">--%>
-<%--                               $(function (){--%>
-<%--                                   $("#pageButon").click(function (){--%>
-<%--                                       var pageNo=$("#pn_input").val();--%>
-<%--                                       var pageTotal=${requestScope.page.pageTotal};--%>
-<%--                                       if(pageNo>1&&pageNo<pageTotal){--%>
-<%--                                           location.href="${pageContext.request.contextPath}/${requestScope.page.url}&pageNo="+pageNo;--%>
-<%--                                       }else{--%>
-
-<%--                                           alert("error");--%>
-<%--                                       }--%>
-<%--                                   });--%>
-<%--                               });--%>
-
-<%--                           </script>--%>
                        </div>
                        </c:if>
                    </div>
@@ -530,7 +504,6 @@
                          <c:forEach items="${sessionScope.lendcart}" var="book">
 
                          <tr>
-<<<<<<< HEAD
                              <td>《${book.bkName}》</td>
                              <td>${book.bkPrice}</td>
                              <td>${sessionScope.lendDate}</td>
@@ -542,13 +515,7 @@
                              <c:if test="${sessionScope.reader.rdStatus=='挂失'}">
                                  <td><button class="deleteItem"   bkid="${book.bkID}" disabled="disabled" style="background: red;height: 30px;width: 45px;border: none;color: white;size: 30px;border-radius:8px">还书</button></td>
                              </c:if>
-=======
-                             <td>${book.bkName}</td>
-                             <td>${book.bkPrice}</td>
-                             <td>${sessionScope.lendDate}</td>
-                             <td>${sessionScope.readerType.canLendDay}</td>
-                             <td><a class="deleteItem" href="cartSevlet?action=deleteItem&id=${book.bkID}">删除</a></td>
->>>>>>> dd5d906178c93ef3a7fd7dd6fa655da8975e6d3e
+
                          </tr>
                          </c:forEach>
                          </c:if>

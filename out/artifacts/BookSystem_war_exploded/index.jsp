@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 小腾同学
-  Date: 2022/10/5
-  Time: 21:33
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -58,7 +52,7 @@
               <input type="submit" value="登录" id="sub_btn" />
             </form>
           </div>
-          <a href="${pageContext.request.contextPath}/web/pages/user/regist.jsp"   id="req">立即申请</a>
+          <a href="pages/rd/regist.jsp"   id="req">立即申请</a>
         </div>
       </div>
     </div>

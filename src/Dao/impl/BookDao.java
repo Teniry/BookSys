@@ -2,6 +2,8 @@ package Dao.impl;
 
 import pojo.Book;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 public interface BookDao {
@@ -21,4 +23,11 @@ public interface BookDao {
     public List<Book> bookByNameISBN(String name,String isbn);
     //根据id改状态
     public void statusByID(Integer id,String status);
+    //根据ISBN更新图书
+    public void update( String bkName, String bkAuthor, String bkPress,  Integer bkPages, BigDecimal bkPrice,  String bkBrief, String bkStatus,  String bkISBN);
+    //根据ID删除对应的图书
+    public void delByID(Integer id);
+    //添加图书
+    public void add(String bkName, String bkAuthor, String bkPress,  Integer bkPages, BigDecimal bkPrice,  String bkBrief, String bkStatus,  String bkISBN);
+
 }

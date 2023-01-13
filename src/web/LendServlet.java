@@ -85,7 +85,6 @@ public class LendServlet extends BaseServlet {
     }
 
     protected void deleteItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         //获取商品编号
         int id=WebUtils.parseInt(req.getParameter("id"),0);
         //获取商品对象
@@ -118,20 +117,16 @@ public class LendServlet extends BaseServlet {
 
 
     protected void ajaxAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         //借的书的数量
         ReaderType reqaertype = (ReaderType) req.getSession().getAttribute("readerType");
         int canLend=reqaertype.getCanLendCount();
         int id= WebUtils.parseInt(req.getParameter("id"),0);
-
         //获得lendcart
         List<Book> lendcart= (List<Book>) req.getSession().getAttribute("lendcart");
         if(lendcart==null){
             lendcart=new ArrayList<Book>();
 //            req.getSession().setAttribute("lendcart",lendcart);
-
         }
-
         //获取借书的数目
         count=lendcart.size();
         Reader reader = (Reader) req.getSession().getAttribute("reader");
@@ -139,7 +134,6 @@ public class LendServlet extends BaseServlet {
             msg=1;
             //通过id获取图书的信息,修改借的书的状态(改了数据库里的状态)
             Book book=bookService.statusByID(id,"已借出");
-
             Page page = (Page) req.getSession().getAttribute("page");
             //创建索引
             int i=0;
